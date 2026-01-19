@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - include:
+      file: uuid-ossp.sql
+      relativeToChangelogFile: true
+  - include:
+      file: customers.sql
+      relativeToChangelogFile: true
+  - include:
+      file: products.sql
+      relativeToChangelogFile: true
+  - include:
+      file: orders.sql
+      relativeToChangelogFile: true
+  - include:
+      file: order_products.sql
+      relativeToChangelogFile: true
