@@ -15,10 +15,41 @@ java {
 }
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
+ext {
+	set('mapstructVersion', '1.6.3')
+	set('lombokVersion', '1.18.38')
+	set('liquibaseVersion', '5.0.0')
+	set('openapiStarterVersion', '2.8.14')
+	set('micrometerVersion', '1.16.0')
+	set('postgreSqlVersion', '42.7.8')
+}
+
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// data
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly "org.postgresql:postgresql:${postgreSqlVersion}"
+	implementation "org.liquibase:liquibase-core:${liquibaseVersion}"
+
+	// monitoring
+	implementation "io.micrometer:micrometer-core:${micrometerVersion}"
+	implementation "io.micrometer:micrometer-registry-prometheus:${micrometerVersion}"
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+	// OpenAPI
+	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${openapiStarterVersion}"
+
+	// lombok
+	implementation "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+
+	// tests
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
